@@ -22,7 +22,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Install Android SDK tools and build tools
+      - name: Install Android SDK commandline tools and build tools
         run: |
           sudo mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
           cd /tmp
@@ -63,7 +63,13 @@ jobs:
       - name: Build release APK
         working-directory: inventory-system-android
         run: |
-          ./gradlew clean assembleRelease --no-daemon
+          if [ -f ./gradlew ]; then
+            ./gradlew clean assembleRelease --no-daemon
+          else
+            sudo apt-get update
+            sudo apt-get install -y gradle
+            gradle clean assembleRelease
+          fi
 
       - name: Find APK
         run: |
