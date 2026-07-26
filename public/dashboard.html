@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Inventory System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">📦 Inventory</div>
+            <ul class="sidebar-nav">
+                <li><a href="#" data-page="dashboard" class="nav-link active">📊 Dashboard</a></li>
+                <li><a href="#" data-page="products" class="nav-link">📦 Products</a></li>
+                <li><a href="#" data-page="profile" class="nav-link">👤 Profile</a></li>
+                <li><a href="#" data-page="logout" class="nav-link">🚪 Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="top-header">
+                <div class="header-title" id="pageTitle">Dashboard</div>
+                <div class="header-right">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-label">Total Products</div>
+                            <div class="stat-value" id="totalProducts">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-label">Total Quantity</div>
+                            <div class="stat-value" id="totalQuantity">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-label">Total Value</div>
+                            <div class="stat-value" id="totalValue">$0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⚠️</div>
+                            <div class="stat-label">Low Stock</div>
+                            <div class="stat-value" id="lowStockCount">0</div>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 30px; margin-bottom: 20px;">🚨 Low Stock Products</h2>
+                    <table class="table" id="lowStockTable">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Reorder Level</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lowStockBody">
+                        </tbody>
+                    </table>
+                    <div id="lowStockEmpty" class="empty-state" style="display:none;">
+                        <div class="empty-state-icon">✅</div>
+                        <div class="empty-state-title">All products in stock</div>
+                        <div class="empty-state-text">No low stock alerts at the moment</div>
+                    </div>
+                </div>
+
+                <!-- Products Page -->
+                <div id="products-page" class="page">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>My Products</h2>
+                        <button class="btn btn-primary btn-sm" id="addProductBtn" style="width: auto;">+ Add Product</button>
+                    </div>
+
+                    <div class="search-bar">
+                        <input type="text" id="searchProducts" placeholder="Search products by name, SKU, or category...">
+                    </div>
+
+                    <table class="table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>SKU</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total Value</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsBody">
+                        </tbody>
+                    </table>
+                    <div id="productsEmpty" class="empty-state" style="display:none;">
+                        <div class="empty-state-icon">📦</div>
+                        <div class="empty-state-title">No products yet</div>
+                        <div class="empty-state-text">Start by adding your first product</div>
+                        <button class="btn btn-primary btn-sm" id="addProductBtnEmpty" style="width: auto; margin-top: 15px;">+ Add Product</button>
+                    </div>
+                </div>
+
+                <!-- Profile Page -->
+                <div id="profile-page" class="page">
+                    <div class="form-container">
+                        <h2>👤 My Profile</h2>
+                        <form id="profileForm">
+                            <div class="form-group">
+                                <label for="profileName">Full Name</label>
+                                <input type="text" id="profileName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePhone">Phone</label>
+                                <input type="tel" id="profilePhone">
+                            </div>
+                            <div class="form-group">
+                                <label for="profileAddress">Address</label>
+                                <input type="text" id="profileAddress">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+
+                        <h2 style="margin-top: 40px; margin-bottom: 20px;">🔐 Change Password</h2>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Add Product</span>
+                <span class="modal-close" id="closeModal">&times;</span>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productSKU">SKU/Barcode</label>
+                        <input type="text" id="productSKU">
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <input type="text" id="productCategory">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productQuantity">Quantity *</label>
+                        <input type="number" id="productQuantity" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price per Unit *</label>
+                        <input type="number" id="productPrice" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productReorderLevel">Reorder Level</label>
+                    <input type="number" id="productReorderLevel" min="0" value="10">
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" rows="3"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-secondary btn-sm" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
